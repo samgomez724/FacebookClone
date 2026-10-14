@@ -24,6 +24,7 @@ class MainActivity : ComponentActivity() {
 
             val myNavController = rememberNavController()
 
+
             NavHost(
                 navController = myNavController,
                 startDestination = "Login",
@@ -34,7 +35,7 @@ class MainActivity : ComponentActivity() {
                 }
 
                 composable(route = "register") {
-                    FacebookRegisterScreen()
+                    FacebookRegisterScreen(navController = myNavController)
                 }
             }
         }
