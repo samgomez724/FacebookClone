@@ -57,4 +57,7 @@ dependencies {
 
     // Jetpack Compose integration
     implementation("androidx.navigation:navigation-compose:$nav_version")
+
+    // Coil para cargar imágenes desde URL
+    implementation("io.coil-kt:coil-compose:2.7.0")
 }
