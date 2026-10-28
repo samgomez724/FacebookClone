@@ -1,4 +1,5 @@
 package me.sgomez.facebookclon.ui.screens
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
@@ -21,7 +22,7 @@ import androidx.navigation.NavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FacebookRegisterScreen(onClickBack : ()-> Unit) {
+fun FacebookRegisterScreen(onClickBack: () -> Unit) {
     var firstName by remember { mutableStateOf("") }
     var lastName by remember { mutableStateOf("") }
     var emailOrPhone by remember { mutableStateOf("") }
@@ -36,9 +37,7 @@ fun FacebookRegisterScreen(onClickBack : ()-> Unit) {
             TopAppBar(
                 title = { },
                 navigationIcon = {
-                    IconButton(onClick = {
-                        onClickBack()
-                    }) {
+                    IconButton(onClick = onClickBack) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = "Ir atrás"
@@ -189,7 +188,7 @@ fun FacebookRegisterScreen(onClickBack : ()-> Unit) {
 
             // Botón Registrarse
             Button(
-                onClick = { /* Acción de registro */ },
+                onClick = { /* Acción de registro exitoso, volver al login */ onClickBack() },
                 colors = ButtonDefaults.buttonColors(containerColor = FacebookBlue),
                 modifier = Modifier
                     .fillMaxWidth()
@@ -206,7 +205,7 @@ fun FacebookRegisterScreen(onClickBack : ()-> Unit) {
             Spacer(modifier = Modifier.height(16.dp))
 
             // Ir a Iniciar sesión
-            TextButton(onClick = {}) {
+            TextButton(onClick = onClickBack) {
                 Text(
                     text = "¿Ya tienes una cuenta?",
                     color = FacebookBlue

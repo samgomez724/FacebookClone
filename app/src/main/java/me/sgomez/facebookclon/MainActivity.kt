@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import me.sgomez.facebookclon.ui.screens.FacebookForgotPasswordScreen
 import me.sgomez.facebookclon.ui.screens.FacebookLoginScreen
 import me.sgomez.facebookclon.ui.screens.FacebookRegisterScreen
 import me.sgomez.facebookclon.ui.screens.FeedScreen
@@ -28,22 +29,38 @@ class MainActivity : ComponentActivity() {
                 modifier = Modifier.fillMaxSize()
             ) {
                 composable(route = Routes.LOGIN) {
-                    FacebookLoginScreen(onClickRegister = {
-                        myNavController.navigate(route = Routes.REGISTER)
-                    },
+                    FacebookLoginScreen(
+                        onClickRegister = {
+                            myNavController.navigate(route = Routes.REGISTER)
+                        },
                         onClickIniciarSesion = {
-                        myNavController.navigate(Routes.FEED){
-                            popUpTo(Routes.LOGIN){
-                                inclusive = true
+                            myNavController.navigate(Routes.FEED) {
+                                popUpTo(Routes.LOGIN) {
+                                    inclusive = true
+                                }
                             }
+                        },
+                        onClickForgotPassword = {
+                            myNavController.navigate(Routes.FORGOT_PASSWORD)
                         }
-                    })
+                    )
                 }
 
                 composable(Routes.REGISTER) {
                     FacebookRegisterScreen(onClickBack = {
-                        myNavController.navigate(Routes.LOGIN)
+                        myNavController.popBackStack()
                     })
+                }
+
+                composable(Routes.FORGOT_PASSWORD) {
+                    FacebookForgotPasswordScreen(
+                        onClickBack = {
+                            myNavController.popBackStack()
+                        },
+                        onSearchAccount = { _ ->
+                            myNavController.popBackStack()
+                        }
+                    )
                 }
 
                 composable(Routes.FEED){
